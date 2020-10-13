@@ -20,6 +20,10 @@ We will
 1. make `dev` the base branch, on this repository.
 1. delete the `master`-branch on this repository.
 
+- Add branch protection with 6 reviewers to discourage merging to `dev`.
+- But we will "allow force pushes," because that ~~might come in handy in a second~~
+allows us to update the `dev` branch with the `master` from the other repository.
+
 ## Setup
 
 Clone the `ubiquitous-pancake-dev` (origin) repository, as this is where we do the development.
@@ -57,11 +61,17 @@ See: <https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows>
 
 1. Checkout the branch of the PR: `git checkout feature/NG-123/newthing`.
 1. Deliver change `git push prod HEAD`. (`HEAD` means "current branch/commit")
-1. Create a PR on the prod repository.
+1. Create a PR on the prod repository. (Maybe reference the PR on `-dev`..)
 1. Merge to master on the production repository.
+1. Close the PR on `-dev`
+1. Switch to the local truth: `git checkout master`
+1. Update the local truth: `git pull`
+1. Update the remote dev with truth: `git push origin master:dev`
 
-> NB: at this point we could update the `dev` repository with the changes in `prod`
+> NB: at this point we could update the `-dev` repository with the changes in `prod`
 > but it's not really that interesting because all the developers are checking out the
 > prod repository when they start making changes.
 
 > NB: I'm slightly uncertain as to the problems of not keeping the `dev` branch up to date.
+> [Update] the problems are, PR's on `-dev` will contain all the "missing" commits.
+> Steps have been updated above.
