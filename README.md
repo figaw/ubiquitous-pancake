@@ -43,7 +43,7 @@ See: <https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows>
 
 ### The developer will...
 
-1. Checkout the "truth": `git checkout prod/main`
+1. Checkout the "truth": `git checkout main` (there is only `main` on prod)
 1. Update the "truth": `git pull`
 1. Start doing work: `git checkout -b feature/NG-123/newthing`
 1. Do work: `touch file`, `git add .`, `git commit -m "ADD stuff"`
@@ -55,8 +55,8 @@ See: <https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows>
 
 ### The Integration Manager will...
 
-1. Checkout the branch of the PR: `git checkout origin/feature/NG-123/newthing`.
-1. Deliver change `git push prod HEAD`.
+1. Checkout the branch of the PR: `git checkout feature/NG-123/newthing`.
+1. Deliver change `git push prod HEAD`. (`HEAD` means "current branch/commit")
 1. Create a PR on the prod repository.
 1. Merge to master on the production repository.
 
